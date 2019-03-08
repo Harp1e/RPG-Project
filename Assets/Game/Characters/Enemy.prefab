@@ -635,20 +635,15 @@ PrefabInstance:
       propertyPath: health
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 8184148583972760884, guid: 116880c176e011b45a60c340a894e59d,
+    - target: {fileID: 9025588973842234139, guid: 116880c176e011b45a60c340a894e59d,
         type: 3}
-      propertyPath: m_Height
-      value: 2
+      propertyPath: healthPoints
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8184148583972760884, guid: 116880c176e011b45a60c340a894e59d,
         type: 3}
       propertyPath: m_Center.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8184148583972760884, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116880c176e011b45a60c340a894e59d, type: 3}
