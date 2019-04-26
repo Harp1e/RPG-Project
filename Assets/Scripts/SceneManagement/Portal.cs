@@ -1,7 +1,10 @@
-﻿using System;
+﻿//using RPG.Core;
+using RPG.Saving;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace RPG.SceneManagement
@@ -19,16 +22,17 @@ namespace RPG.SceneManagement
         [SerializeField] float fadeOutTime = 1f;
         [SerializeField] float fadeInTime = 2f;
         [SerializeField] float fadeWaitTime = 1f;
+        [SerializeField] [Range(0.01f, 1f)] float portalSpeedEffect = 1f;
 
         void OnTriggerEnter (Collider other)
         {
             if (other.tag == "Player")
             {
-                StartCoroutine (Transition ());
+                StartCoroutine (Transition (other.gameObject));
             }
         }
 
-        IEnumerator Transition ()
+        IEnumerator Transition (GameObject player)
         {
             if (sceneToLoad < 0) 
             {
@@ -39,12 +43,21 @@ namespace RPG.SceneManagement
             DontDestroyOnLoad (gameObject);
 
             Fader fader = FindObjectOfType<Fader> ();
-            yield return fader.FadeOut (fadeOutTime);
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper> ();
 
+            Time.timeScale = portalSpeedEffect;
+
+            yield return fader.FadeOut (fadeOutTime);
+            Time.timeScale = 1f;
+
+            savingWrapper.Save ();
             yield return SceneManager.LoadSceneAsync (sceneToLoad);
+            savingWrapper.Load ();
 
             Portal otherPortal = GetOtherPortal ();
             UpdatePlayer (otherPortal);
+
+            savingWrapper.Save ();
 
             yield return new WaitForSeconds (fadeWaitTime);
 
@@ -56,8 +69,10 @@ namespace RPG.SceneManagement
         private void UpdatePlayer (Portal otherPortal)
         {
             GameObject player = GameObject.FindGameObjectWithTag ("Player");
+            player.GetComponent<NavMeshAgent> ().enabled = false;
             player.transform.position = otherPortal.spawnPoint.position;
             player.transform.rotation = otherPortal.spawnPoint.rotation;
+            player.GetComponent<NavMeshAgent> ().enabled = true;
         }
 
         private Portal GetOtherPortal ()

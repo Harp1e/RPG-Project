@@ -91,5 +91,7 @@ MonoBehaviour:
   sceneToLoad: 0
   spawnPoint: {fileID: 7316784224545890628}
   destination: 0
-  fadeOutDuration: 2
-  fadeInDuration: 2
+  fadeOutTime: 0.5
+  fadeInTime: 0.5
+  fadeWaitTime: 1
+  portalSpeedEffect: 0.5
