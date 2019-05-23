@@ -19,7 +19,7 @@ namespace RPG.Saving
             CaptureState (state);
             SaveFile (saveFile, state);
         }
-       
+
         public void Load (string saveFile)
         {
             RestoreState (LoadFile (saveFile));
@@ -61,6 +61,7 @@ namespace RPG.Saving
                 BinaryFormatter formatter = new BinaryFormatter ();
                 formatter.Serialize (stream, state);
             }
+            Debug.Log ("Saved to: " + GetPathFromSaveFile (saveFile));
         }
 
         private void CaptureState (Dictionary<string, object> state)
@@ -89,5 +90,16 @@ namespace RPG.Saving
         {
             return Path.Combine (Application.persistentDataPath, saveFile + ".sav");
         }
-    } 
+
+        public void ResetGame (string saveFile)
+        {
+            string path = GetPathFromSaveFile (saveFile);
+            if (File.Exists (path))
+            {
+                File.Delete (path);
+            }
+            SceneManager.LoadScene (1);
+        }
+
+    }
 }

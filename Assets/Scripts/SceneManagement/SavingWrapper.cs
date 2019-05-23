@@ -29,6 +29,11 @@ namespace RPG.SceneManagement
             {
                 Load ();
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ResetProfile ();
+            }
         }
 
         public void Load ()
@@ -41,5 +46,10 @@ namespace RPG.SceneManagement
             GetComponent<SavingSystem> ().Save (defaultSaveFile);
         }
 
+        void ResetProfile ()
+        {
+            GetComponent<SavingSystem> ().ResetGame (defaultSaveFile);
+            Debug.Log ("SaveGame Deleted");
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace RPG.SceneManagement
 
             savingWrapper.Save ();
             yield return SceneManager.LoadSceneAsync (sceneToLoad);
+
             savingWrapper.Load ();
 
             Portal otherPortal = GetOtherPortal ();
