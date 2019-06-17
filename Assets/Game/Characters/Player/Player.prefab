@@ -12,6 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597dd9dddfe9e614084d10a3b1da9970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8473648053188062107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409400184466384092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 723147de05c7d0c4b9534dc0c5950cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePoints: 0
 --- !u!1001 &7123769714065282405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89,6 +102,55 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 7454246298772124091, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013667209662593793, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: characterClass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 7169294130991393685, guid: ce0c6e52dedbd3c4fb01c8015dc65065,
+        type: 3}
+    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 313793292115912632}
+    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: weaponOverride
+      value: 
+      objectReference: {fileID: 22100000, guid: bd42de21486104047973b73e79908654,
+        type: 2}
+    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f444e9311d01a44c8cbfd29bc7edf8a,
+        type: 2}
+    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cf43fdd069521f4a8c080ff1962d415,
+        type: 2}
+    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: rightHandTransform
+      value: 
+      objectReference: {fileID: 313793292115912632}
+    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 313793292115970000}
     - target: {fileID: 7387706149486796619, guid: 116880c176e011b45a60c340a894e59d,
         type: 3}
       propertyPath: m_Bones.Array.data[0]
@@ -339,50 +401,6 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 313793292115917532}
-    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: weaponPrefab
-      value: 
-      objectReference: {fileID: 7169294130991393685, guid: ce0c6e52dedbd3c4fb01c8015dc65065,
-        type: 3}
-    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: handTransform
-      value: 
-      objectReference: {fileID: 313793292115912632}
-    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: weaponOverride
-      value: 
-      objectReference: {fileID: 22100000, guid: bd42de21486104047973b73e79908654,
-        type: 2}
-    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 1f444e9311d01a44c8cbfd29bc7edf8a,
-        type: 2}
-    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: defaultWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 4cf43fdd069521f4a8c080ff1962d415,
-        type: 2}
-    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: rightHandTransform
-      value: 
-      objectReference: {fileID: 313793292115912632}
-    - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: leftHandTransform
-      value: 
-      objectReference: {fileID: 313793292115970000}
-    - target: {fileID: 7454246298772124091, guid: 116880c176e011b45a60c340a894e59d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7387706149486861511, guid: 116880c176e011b45a60c340a894e59d,
         type: 3}
       propertyPath: m_Bones.Array.data[0]

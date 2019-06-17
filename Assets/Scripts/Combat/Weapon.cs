@@ -1,10 +1,9 @@
-﻿using System;
-using RPG.Core;
-using UnityEngine;
+﻿using UnityEngine;
+using RPG.Resources;
 
 namespace RPG.Combat
 {
-    [CreateAssetMenu (fileName = "New Weapon", menuName = "Weapons/Make New Weapon", order = 1)]
+    [CreateAssetMenu (fileName = "New Weapon", menuName = "RPG Project/Weapons/Make New Weapon", order = 0)]
     public class Weapon : ScriptableObject
     {
         [SerializeField] GameObject equippedPrefab = null;
@@ -27,7 +26,7 @@ namespace RPG.Combat
                 GameObject weapon = Instantiate (equippedPrefab, handTransform);
                 weapon.name = weaponName;
             }
-
+            
             var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
             if (animatorOverride != null)
             {
@@ -67,11 +66,12 @@ namespace RPG.Combat
             return (isRightHanded) ? rightHand : leftHand;
         }
 
-        public void LaunchProjectile (Transform rightHand, Transform leftHand, Health target)
+        public void LaunchProjectile (Transform rightHand, Transform leftHand, 
+                                        Health target, GameObject instigator)
         {
             Projectile projectileInstance = Instantiate 
                 (projectile, GetHandTransform (rightHand, leftHand).position, Quaternion.identity);
-            projectileInstance.SetTarget (target, weaponDamage);
+            projectileInstance.SetTarget (target, instigator, weaponDamage);
         }
 
         public float GetRange ()

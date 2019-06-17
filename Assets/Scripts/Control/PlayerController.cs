@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
-using RPG.Core;
+using RPG.Resources;
 
 namespace RPG.Control
 { 
     public class PlayerController : MonoBehaviour 
     {
+        LayerMask layerMask;
         Health health;
 
-        void Awake ()
+        void Start ()
         {
             health = GetComponent<Health> ();
+            layerMask = 1 << 1;
+            layerMask = ~layerMask;
         }
 
         void Update ()
         {
-            if (health.IsDead) { return; }
+            if (health.IsDead ()) { return; }
             if (InteractWithCombat ()) { return; }
             if (InteractWithMovement ()) { return; }
         }
@@ -45,7 +48,8 @@ namespace RPG.Control
         private bool InteractWithMovement ()
         {
             RaycastHit hit;
-            bool hasHit = Physics.Raycast (GetMouseRay (), out hit);
+            bool hasHit = Physics.Raycast (GetMouseRay (), out hit, Mathf.Infinity, layerMask);
+            
             if (hasHit)
             {
                 if (Input.GetMouseButton (0))

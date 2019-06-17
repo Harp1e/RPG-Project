@@ -1,8 +1,5 @@
-﻿using RPG.Core;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using RPG.Resources;
 
 namespace RPG.Combat
 {
@@ -16,6 +13,8 @@ namespace RPG.Combat
         [SerializeField] float lifeAfterImpact = 0.2f;
 
         Health target = null;
+        GameObject instigator;
+
         float damage = 0;
 
         void Start ()
@@ -27,7 +26,7 @@ namespace RPG.Combat
         void Update ()
         {
             if (target == null) { return; }
-            if (isHoming && !target.IsDead)
+            if (isHoming && !target.IsDead ())
             {
                 transform.LookAt (GetAimLocation ());
             }
@@ -35,10 +34,11 @@ namespace RPG.Combat
             transform.Translate (Vector3.forward * speed * Time.deltaTime);
         }
 
-        public void SetTarget (Health target, float damage)
+        public void SetTarget (Health target, GameObject instigator, float damage)
         {
             this.target = target;
             this.damage = damage;
+            this.instigator = instigator;
         }
 
 
@@ -55,9 +55,9 @@ namespace RPG.Combat
         void OnTriggerEnter (Collider other)
         {
             if (other.GetComponent<Health> () != target) { return; }
-            if (target.IsDead) { return; }
+            if (target.IsDead ()) { return; }
 
-            target.TakeDamage (damage);
+            target.TakeDamage (instigator, damage);
             speed = 0;
 
             if (hitEffect != null)

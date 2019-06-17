@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
+using RPG.Resources;
 using RPG.Saving;
 
 namespace RPG.Movement
@@ -14,15 +13,15 @@ namespace RPG.Movement
         NavMeshAgent agent;
         Health health;
 
-        void Awake ()
+        void Start ()
         {
-            agent = GetComponent<NavMeshAgent> ();
             health = GetComponent<Health> ();
+            agent = GetComponent<NavMeshAgent> ();
         }
 
         void Update () 
-	    {
-            agent.enabled = !health.IsDead;
+	    {            
+            agent.enabled = !health.IsDead ();
             UpdateAnimator ();
 	    }
 
@@ -60,9 +59,9 @@ namespace RPG.Movement
         public void RestoreState (object state)
         {
             SerializableVector3 position = (SerializableVector3)state;
-            agent.enabled = false;
+            GetComponent<NavMeshAgent> ().enabled = false;
             transform.position = position.ToVector ();
-            agent.enabled = true;
+            GetComponent<NavMeshAgent> ().enabled = true;
             GetComponent<ActionScheduler> ().CancelCurrentAction ();
         }
     }

@@ -1,6 +1,5 @@
 ﻿using RPG.Saving;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -8,23 +7,16 @@ namespace RPG.Combat
     public class WeaponPickup : MonoBehaviour, ISaveable
     {
         [SerializeField] Weapon weapon;
-
+        [SerializeField] float respawnTime = 5f;
         bool isEnabled = true;
 
         void OnTriggerEnter (Collider other)
         {
             if (other.tag == "Player")
             {
-               other.GetComponent<Fighter> ().EquipWeapon (weapon);
-                DisablePickup ();
+                other.GetComponent<Fighter> ().EquipWeapon (weapon);
+                StartCoroutine (HideForSeconds (respawnTime));
             }            
-        }
-
-        void DisablePickup ()
-        {
-            GetComponent<SphereCollider> ().enabled = false;
-            transform.GetChild (0).gameObject.SetActive (false);
-            isEnabled = false;
         }
 
         public object CaptureState ()
@@ -37,8 +29,25 @@ namespace RPG.Combat
             isEnabled = (bool)state;
             if (!isEnabled)
             {
-                DisablePickup ();
+                StartCoroutine (HideForSeconds (respawnTime));
             }
+        }
+
+        IEnumerator HideForSeconds (float seconds)
+        {
+            ShowPickup (false);
+            yield return new WaitForSeconds (seconds);
+            ShowPickup (true);
+        }
+
+        private void ShowPickup (bool shouldShow)
+        {
+            GetComponent<Collider> ().enabled = shouldShow;
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive (shouldShow);
+            }
+            isEnabled = shouldShow;
         }
     } 
 }

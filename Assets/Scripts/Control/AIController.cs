@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
-
+using RPG.Resources;
 
 namespace RPG.Control
 {
@@ -30,7 +28,7 @@ namespace RPG.Control
         float timeAtWaypoint = Mathf.Infinity;
        
 
-        void Awake ()
+        void Start ()
         {
             player = GameObject.FindWithTag ("Player");
             fighter = GetComponent<Fighter> ();
@@ -41,7 +39,7 @@ namespace RPG.Control
 
         void Update ()
         {
-            if (health.IsDead) { return; }
+            if (health.IsDead ()) { return; }
 
             if (InAttackRangeOfPlayer () && fighter.CanAttack (player))
             {
@@ -118,7 +116,7 @@ namespace RPG.Control
 
         void OnDrawGizmosSelected ()
         {
-            Gizmos.color = Color.blue;
+            Gizmos.color = Color.white;
             Gizmos.DrawWireSphere (transform.position, chaseDistance);
         }
     } 
