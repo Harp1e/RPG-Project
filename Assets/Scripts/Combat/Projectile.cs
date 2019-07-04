@@ -20,7 +20,6 @@ namespace RPG.Combat
         void Start ()
         {
             transform.LookAt (GetAimLocation ());
-            Destroy (gameObject, maxLifetime);
         }
 
         void Update ()
@@ -39,6 +38,8 @@ namespace RPG.Combat
             this.target = target;
             this.damage = damage;
             this.instigator = instigator;
+
+            Destroy (gameObject, maxLifetime);
         }
 
 

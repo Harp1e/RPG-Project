@@ -12,7 +12,7 @@ namespace RPG.Control
         LayerMask layerMask;
         Health health;
 
-        void Start ()
+        void Awake ()
         {
             health = GetComponent<Health> ();
             layerMask = 1 << 1;

@@ -12,7 +12,7 @@ namespace RPG.Core
         Material[] originals;
         MeshRenderer[] meshRenderers;
 
-        void Start ()
+        void Awake ()
         {
             meshRenderers = GetComponentsInChildren<MeshRenderer> ();
             originals = new Material[meshRenderers.Length];

@@ -112,6 +112,11 @@ PrefabInstance:
       propertyPath: characterClass
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9013667209662593793, guid: 116880c176e011b45a60c340a894e59d,
+        type: 3}
+      propertyPath: shouldUseModifiers
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8164058514489888888, guid: 116880c176e011b45a60c340a894e59d,
         type: 3}
       propertyPath: weaponPrefab

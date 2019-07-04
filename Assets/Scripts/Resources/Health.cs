@@ -2,6 +2,7 @@
 using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
+using GameDevTV.Utils;
 
 namespace RPG.Resources
 {
@@ -9,18 +10,32 @@ namespace RPG.Resources
     {
         [SerializeField] [Range(0, 100)] float regenerationPercentage = 70f;
 
-        float healthPoints = -1;
-        //float damagePoints = 0f;
-        bool isDead = false;        
+        LazyValue <float> healthPoints;
+        bool isDead = false;
+
+        void Awake ()
+        {
+            healthPoints = new LazyValue<float> (GetInitialHealth);
+        }
+
+        float GetInitialHealth ()
+        {
+            return GetComponent<BaseStats> ().GetStat (Stat.Health);
+        }
+
+        void OnEnable ()
+        {
+            GetComponent<BaseStats> ().OnLevelup += RegenerateHealth;
+        }
+
+        void OnDisable ()
+        {
+            GetComponent<BaseStats> ().OnLevelup -= RegenerateHealth;
+        }
 
         void Start ()
         {
-            GetComponent<BaseStats> ().OnLevelup += RegenerateHealth;
-            if (healthPoints < 0)
-            {
-                //Debug.Log (gameObject.name + "Health Start");
-                healthPoints = GetComponent<BaseStats> ().GetStat (Stat.Health);
-            }
+            healthPoints.ForceInit ();
         }
 
         public bool IsDead ()
@@ -30,14 +45,25 @@ namespace RPG.Resources
 
         public void TakeDamage (GameObject instigator, float damage)
         {
-            healthPoints = Mathf.Max (healthPoints - damage, 0);
+            //Debug.Log (gameObject.name + " took damage: " + damage); 
+            healthPoints.value = Mathf.Max (healthPoints.value - damage, 0);
             //damagePoints += damage;
             //damagePoints = Mathf.Clamp (damagePoints, 0, GetComponent<BaseStats> ().GetStat (Stat.Health));
-            if (healthPoints <= 0)
+            if (healthPoints.value <= 0)
             {
                 Die ();
                 AwardExperience (instigator);
             }
+        }
+
+        public float GetHealthPoints ()
+        {
+            return healthPoints.value;
+        }
+
+        public float GetMaxHealthPoints ()
+        {
+            return GetComponent<BaseStats> ().GetStat (Stat.Health);
         }
 
         public float GetPercentage ()
@@ -45,7 +71,7 @@ namespace RPG.Resources
             //float totalHealth = GetComponent<BaseStats> ().GetStat (Stat.Health);
             //return 100f * (1 - damagePoints / totalHealth);
             //Debug.Log ("Health - GetPercentage");
-            return 100 * (healthPoints / GetComponent<BaseStats> ().GetStat (Stat.Health));
+            return 100 * (healthPoints.value / GetComponent<BaseStats> ().GetStat (Stat.Health));
         }
 
         //bool ShouldDie ()
@@ -77,7 +103,7 @@ namespace RPG.Resources
                 GetComponent<BaseStats> ().GetStat (Stat.Health) * (regenerationPercentage / 100f);
             //float regenDamagePoints = GetComponent<BaseStats> ().GetStat (Stat.Health) - regenHealthPoints;
             //damagePoints = Mathf.Min (damagePoints, regenDamagePoints);
-            healthPoints = Mathf.Max (healthPoints, regenHealthPoints);
+            healthPoints.value = Mathf.Max (healthPoints.value, regenHealthPoints);
         }
         
         public object CaptureState ()
@@ -88,9 +114,9 @@ namespace RPG.Resources
 
         public void RestoreState (object state)
         {
-            healthPoints = (float)state;
+            healthPoints.value = (float)state;
             //damagePoints = (float)state;
-            if (healthPoints <= 0)
+            if (healthPoints.value <= 0)
             {
                 Die ();
             }

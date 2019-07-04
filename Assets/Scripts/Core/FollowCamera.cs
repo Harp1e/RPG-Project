@@ -9,7 +9,7 @@ namespace RPG.Core
     {
         [SerializeField] Transform target;
 
-        void Start ()
+        void Awake ()
         {
             if (target == null)
             {

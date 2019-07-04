@@ -16,10 +16,10 @@ namespace RPG.SceneManagement
         }
 
         IEnumerator LoadLastScene ()
-        {
+        {            
+            yield return StartCoroutine (GetComponent<SavingSystem> ().LoadLastScene (defaultSaveFile));
             Fader fader = FindObjectOfType<Fader> ();
             fader.FadeOutImmediate ();
-            yield return StartCoroutine (GetComponent<SavingSystem> ().LoadLastScene (defaultSaveFile));
             yield return fader.FadeIn (IntialFadeTime);
         }
 

@@ -9,7 +9,7 @@ namespace RPG.Core
         [SerializeField] GameObject[] cameraList;
         int currentCamera = 0;
         
-        void Start ()
+        void Awake ()
         {
             for (int i = 0; i < cameraList.Length; i++)
             {

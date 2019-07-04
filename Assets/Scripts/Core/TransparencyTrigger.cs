@@ -11,7 +11,7 @@ namespace RPG.Core
         RaycastHit hit;
         TransparentFX fx;
 
-        void Start ()
+        void Awake ()
         {
             player = GameObject.FindGameObjectWithTag ("Player").transform;
         }
