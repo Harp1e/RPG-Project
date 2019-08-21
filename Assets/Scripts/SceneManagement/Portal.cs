@@ -17,7 +17,7 @@ namespace RPG.SceneManagement
         }
 
         [SerializeField] int sceneToLoad = -1;
-        [SerializeField] Transform spawnPoint;
+        [SerializeField] Transform spawnPoint = null;
         [SerializeField] DestinationIdentifier destination = DestinationIdentifier.A;
         [SerializeField] float fadeOutTime = 1f;
         [SerializeField] float fadeInTime = 2f;
@@ -36,7 +36,7 @@ namespace RPG.SceneManagement
         {
             if (sceneToLoad < 0) 
             {
-                Debug.LogError ("SceneToLoad has not been set!");
+                Debug.LogError ("PORTAL - Transition: SceneToLoad has not been set!");
                 yield break;
             }
 

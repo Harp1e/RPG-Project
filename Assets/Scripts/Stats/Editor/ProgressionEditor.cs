@@ -9,7 +9,7 @@ namespace RPG.Stats
         //Progression source;
         SerializedProperty s_characterClasses;
 
-        bool showLevels = false;
+        //bool showLevels = false;
 
         void OnEnable ()
         {

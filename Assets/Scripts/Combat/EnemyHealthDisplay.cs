@@ -1,4 +1,4 @@
-﻿using RPG.Resources;
+﻿using RPG.Attributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,9 +27,8 @@ namespace RPG.Combat
             }
 
             Health health = fighter.GetTarget ();
-            //healthValue.text = String.Format ("{0:0}%", health.GetPercentage ());
-            healthValue.text = String.Format ("{0:0}% - {1:0}/{2:0}",
-                    health.GetPercentage (), health.GetHealthPoints (), health.GetMaxHealthPoints ());
+            healthValue.text = String.Format ("{0:0}/{1:0}",
+                    health.GetHealthPoints (), health.GetMaxHealthPoints ());
         }
     } 
 }

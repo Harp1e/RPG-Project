@@ -2,7 +2,7 @@
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
-using RPG.Resources;
+using RPG.Attributes;
 using GameDevTV.Utils;
 
 namespace RPG.Control
@@ -11,13 +11,13 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 5f;
-        [SerializeField] PatrolPath patrolPath;
+        [SerializeField] PatrolPath patrolPath = null;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointDelayTime = 5f;
         [SerializeField] float waypointDelayVariance = 1f;
         [SerializeField] int currentWaypointIndex = 0;       
         [SerializeField] [Range (0,1)] float patrolSpeedFraction = 0.2f;
-        [SerializeField] [Range (0,1)] float normalSpeedFraction = 1f;
+        //[SerializeField] [Range (0,1)] float normalSpeedFraction = 1f;
 
         GameObject player;
         Fighter fighter;

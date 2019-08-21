@@ -37,7 +37,7 @@ namespace RPG.Saving
             RestoreState (state);
         }
 
-        private Dictionary<string, object> LoadFile (string saveFile)
+        Dictionary<string, object> LoadFile (string saveFile)
         {
             string path = GetPathFromSaveFile (saveFile);
             if (!File.Exists(path))
@@ -51,18 +51,19 @@ namespace RPG.Saving
             }
         }
 
-        private void SaveFile (string saveFile, object state)
+        void SaveFile (string saveFile, object state)
         {
             string path = GetPathFromSaveFile (saveFile);
+            Debug.Log ("Saving to: " + GetPathFromSaveFile (saveFile));
             using (FileStream stream = File.Open (path, FileMode.Create))
             {
                 BinaryFormatter formatter = new BinaryFormatter ();
                 formatter.Serialize (stream, state);
             }
-            Debug.Log ("Saved to: " + GetPathFromSaveFile (saveFile));
+            //Debug.Log ("Saved to: " + GetPathFromSaveFile (saveFile));
         }
 
-        private void CaptureState (Dictionary<string, object> state)
+        void CaptureState (Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
@@ -72,7 +73,7 @@ namespace RPG.Saving
             state[currentSceneIndex] = SceneManager.GetActiveScene ().buildIndex;
         }
 
-        private void RestoreState (Dictionary<string, object> state)
+        void RestoreState (Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity> ())
             {

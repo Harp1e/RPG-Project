@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
-using RPG.Resources;
+using RPG.Attributes;
 using RPG.Saving;
 using RPG.Stats;
 using System.Collections.Generic;
@@ -62,7 +62,7 @@ namespace RPG.Combat
 
             currentWeapon.value = weapon;
             AttachWeapon (weapon);
-            Debug.Log (currentWeapon.value);
+            //Debug.Log (currentWeapon.value);
         }
 
         private void AttachWeapon (Weapon weapon)

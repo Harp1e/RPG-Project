@@ -18,7 +18,8 @@ namespace RPG.Core
 
         void Update ()
         {
-            ray = new Ray (transform.position, (player.position - transform.position));
+            Vector3 direction = player.position - transform.position;
+            ray = new Ray (transform.position, direction);
             if (Physics.Raycast (ray, out hit, Mathf.Infinity))
             {
                 if (fx == null)

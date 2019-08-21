@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 namespace RPG.Core
 {
     public class TransparentFX : MonoBehaviour
     {
-        [SerializeField] Material transparentMaterial;
+        [SerializeField] Material transparentMaterial = null;
 
         Material[] originals;
         MeshRenderer[] meshRenderers;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.Resources
+namespace RPG.Attributes
 {
     public class HealthDisplay : MonoBehaviour
     {
@@ -19,9 +19,8 @@ namespace RPG.Resources
 
         void Update ()
         {
-            //healthValue.text = health.GetPercentage ().ToString ("F0") + "%";
-            healthValue.text = String.Format("{0:0}% - {1:0}/{2:0}" ,
-                health.GetPercentage (),health.GetHealthPoints(), health.GetMaxHealthPoints());
+            healthValue.text = String.Format("{0:0}/{1:0}" ,
+                health.GetHealthPoints(), health.GetMaxHealthPoints());
         }
     } 
 }

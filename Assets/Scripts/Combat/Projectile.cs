@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using RPG.Resources;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
@@ -9,7 +9,7 @@ namespace RPG.Combat
         [SerializeField] float maxLifetime = 10f;
         [SerializeField] bool isHoming = true;
         [SerializeField] GameObject hitEffect = null;
-        [SerializeField] GameObject[] destroyOnHit;
+        [SerializeField] GameObject[] destroyOnHit = null;
         [SerializeField] float lifeAfterImpact = 0.2f;
 
         Health target = null;

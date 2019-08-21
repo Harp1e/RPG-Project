@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
-using RPG.Resources;
+using RPG.Attributes;
 using RPG.Saving;
 
 namespace RPG.Movement
@@ -59,10 +59,10 @@ namespace RPG.Movement
         public void RestoreState (object state)
         {
             SerializableVector3 position = (SerializableVector3)state;
-            //agent.enabled = false;
-            //transform.position = position.ToVector ();
-            //agent.enabled = true;     // OR
-            agent.Move (position.ToVector ());
+            agent.enabled = false;
+            transform.position = position.ToVector ();
+            agent.enabled = true;     // OR
+            //agent.Move (position.ToVector ());
             GetComponent<ActionScheduler> ().CancelCurrentAction ();
         }
     }

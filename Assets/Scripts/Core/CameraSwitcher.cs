@@ -6,7 +6,7 @@ namespace RPG.Core
 {
     public class CameraSwitcher : MonoBehaviour
     {
-        [SerializeField] GameObject[] cameraList;
+        [SerializeField] GameObject[] cameraList = null;
         int currentCamera = 0;
         
         void Awake ()
