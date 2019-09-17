@@ -43,6 +43,7 @@ namespace RPG.Control
             }
             if (InteractWithComponent ()) { return; }
             if (InteractWithMovement ()) { return; }
+
             SetCursor (CursorType.NONE);
         }
 

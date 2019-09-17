@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2481264146872042498}
   - component: {fileID: 4902746468200698080}
+  - component: {fileID: 6752743658529984437}
   m_Layer: 0
   m_Name: Equipped Bow
   m_TagString: Weapon
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396617555412177072}
-  m_LocalRotation: {x: 0.043517847, y: 0.7925784, z: -0.6079999, w: 0.016180463}
+  m_LocalRotation: {x: 0.043514762, y: 0.792576, z: -0.60800326, w: 0.016178798}
   m_LocalPosition: {x: 0.17169291, y: -0.2683194, z: 0.7947421}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -42,6 +43,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c875cd39ccae07b44b069fa2534f8d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6752743658529984437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396617555412177072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39ae6f924160c8439692c0053496a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7832455865614096766

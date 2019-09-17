@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7c0bfd18e15734d946d110c281a0e2, type: 3}
   m_Name: Club
   m_EditorClassIdentifier: 
-  equippedPrefab: {fileID: 1456972560750574462, guid: b4140b2019e85fc42a2e44b1f00d02c2,
+  equippedPrefab: {fileID: 6055423257979203961, guid: b4140b2019e85fc42a2e44b1f00d02c2,
     type: 3}
   animatorOverride: {fileID: 22100000, guid: 8bb8f41cc4589c54a9edec40d2ef8603, type: 2}
   weaponRange: 2
   weaponDamage: 5
+  percentageBonus: 0
   timeBetweenAttacks: 1
   isRightHanded: 1
   projectile: {fileID: 0}

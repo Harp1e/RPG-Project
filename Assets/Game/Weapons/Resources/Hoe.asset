@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7c0bfd18e15734d946d110c281a0e2, type: 3}
   m_Name: Hoe
   m_EditorClassIdentifier: 
-  equippedPrefab: {fileID: 9089989226736756567, guid: 38ef84be58e6e5748b7b01d3cb3946fe,
+  equippedPrefab: {fileID: 429252454598217197, guid: 38ef84be58e6e5748b7b01d3cb3946fe,
     type: 3}
   animatorOverride: {fileID: 22100000, guid: d70c9d84405093c479861522b447facd, type: 2}
   weaponRange: 3
   weaponDamage: 5
+  percentageBonus: 0
   timeBetweenAttacks: 1
   isRightHanded: 1
   projectile: {fileID: 0}

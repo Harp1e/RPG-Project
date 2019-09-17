@@ -28,6 +28,9 @@ namespace RPG.Control
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeAtWaypoint = Mathf.Infinity;
 
+        bool isTriggered = false;
+        Vector3 currentTriggerPosition;
+
         void Awake ()
         {
             player = GameObject.FindWithTag ("Player");
@@ -52,9 +55,12 @@ namespace RPG.Control
             if (health.IsDead ()) { return; }
 
             if (InAttackRangeOfPlayer () && fighter.CanAttack (player))
-            {
-                
+            {                
                 AttackBehaviour ();
+            }
+            else if (isTriggered)
+            {
+                TriggerBehaviour ();
             }
             else if (timeSinceLastSawPlayer <= suspicionTime)
             {
@@ -65,6 +71,18 @@ namespace RPG.Control
                 PatrolBehaviour ();
             }
             UpdateTimers ();
+        }
+
+        private void TriggerBehaviour ()
+        {
+            if (Vector3.Distance(transform.position, currentTriggerPosition) < waypointTolerance)
+            {
+                isTriggered = false;
+            }
+            else
+            {
+                mover.StartMoveAction (currentTriggerPosition, 1f);
+            }
         }
 
         private void UpdateTimers ()
@@ -128,6 +146,12 @@ namespace RPG.Control
         {
             Gizmos.color = Color.white;
             Gizmos.DrawWireSphere (transform.position, chaseDistance);
+        }
+
+        public void SetTriggered ()
+        {
+            isTriggered = true;
+            currentTriggerPosition = player.transform.position;
         }
     } 
 }

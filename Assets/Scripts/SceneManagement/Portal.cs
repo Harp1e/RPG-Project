@@ -1,6 +1,4 @@
-﻿//using RPG.Core;
-using RPG.Saving;
-using System;
+﻿using RPG.Control;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +18,7 @@ namespace RPG.SceneManagement
         [SerializeField] Transform spawnPoint = null;
         [SerializeField] DestinationIdentifier destination = DestinationIdentifier.A;
         [SerializeField] float fadeOutTime = 1f;
-        [SerializeField] float fadeInTime = 2f;
+        [SerializeField] float fadeInTime = 1f;
         [SerializeField] float fadeWaitTime = 1f;
         [SerializeField] [Range(0.01f, 1f)] float portalSpeedEffect = 1f;
 
@@ -47,11 +45,17 @@ namespace RPG.SceneManagement
 
             Time.timeScale = portalSpeedEffect;
 
+            player.GetComponent<PlayerController> ().enabled = false;
+
             yield return fader.FadeOut (fadeOutTime);
             Time.timeScale = 1f;
 
             savingWrapper.Save ();
             yield return SceneManager.LoadSceneAsync (sceneToLoad);
+
+            PlayerController controller = 
+                GameObject.FindWithTag ("Player").GetComponent<PlayerController> ();
+            controller.enabled = false;
 
             savingWrapper.Load ();
 
@@ -62,7 +66,9 @@ namespace RPG.SceneManagement
 
             yield return new WaitForSeconds (fadeWaitTime);
 
-            yield return fader.FadeIn (fadeInTime);
+            fader.FadeIn (fadeInTime);
+
+            controller.enabled = true;
 
             Destroy (gameObject);
         }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3722177326494255330}
   - component: {fileID: 6963416711889648790}
+  - component: {fileID: 1640163383486108631}
   m_Layer: 0
   m_Name: Equipped Fireball
   m_TagString: Untagged
@@ -41,5 +42,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c875cd39ccae07b44b069fa2534f8d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1640163383486108631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479353309031726259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39ae6f924160c8439692c0053496a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

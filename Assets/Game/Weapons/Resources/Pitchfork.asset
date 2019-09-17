@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7c0bfd18e15734d946d110c281a0e2, type: 3}
   m_Name: Pitchfork
   m_EditorClassIdentifier: 
-  equippedPrefab: {fileID: 4564177016048463079, guid: 8e48d7bc91660ad4eaa9063d0a5f6f8d,
+  equippedPrefab: {fileID: 1402564474344018012, guid: 8e48d7bc91660ad4eaa9063d0a5f6f8d,
     type: 3}
   animatorOverride: {fileID: 22100000, guid: cc61ab4502556934b826e93a1a204a68, type: 2}
   weaponRange: 3
   weaponDamage: 5
+  percentageBonus: 0
   timeBetweenAttacks: 1
   isRightHanded: 1
   projectile: {fileID: 0}

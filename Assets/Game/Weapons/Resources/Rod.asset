@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7c0bfd18e15734d946d110c281a0e2, type: 3}
   m_Name: Rod
   m_EditorClassIdentifier: 
-  equippedPrefab: {fileID: 6160708476014051475, guid: 0ccfae965e1636b42b094991ad3391b7,
+  equippedPrefab: {fileID: 7069487058413825948, guid: 0ccfae965e1636b42b094991ad3391b7,
     type: 3}
   animatorOverride: {fileID: 22100000, guid: bc16970e8e81aac4489be85d26403677, type: 2}
   weaponRange: 2
   weaponDamage: 5
+  percentageBonus: 0
   timeBetweenAttacks: 1
   isRightHanded: 0
   projectile: {fileID: 0}

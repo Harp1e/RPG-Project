@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9835888597924865}
   - component: {fileID: 4329044891271905089}
+  - component: {fileID: 429252454598217197}
   m_Layer: 0
   m_Name: Equipped Hoe
   m_TagString: Untagged
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9089989226736756567}
-  m_LocalRotation: {x: 0.26129276, y: -0.9608262, z: 0.042848267, w: 0.08187282}
+  m_LocalRotation: {x: 0.26129153, y: -0.96082646, z: 0.04284841, w: 0.08187339}
   m_LocalPosition: {x: 0.194, y: 0.117, z: 0.521}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -42,6 +43,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c875cd39ccae07b44b069fa2534f8d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &429252454598217197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9089989226736756567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39ae6f924160c8439692c0053496a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6958888632794417058
