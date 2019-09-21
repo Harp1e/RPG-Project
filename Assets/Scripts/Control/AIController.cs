@@ -10,14 +10,15 @@ namespace RPG.Control
     public class AIController : MonoBehaviour
     {
         [SerializeField] float chaseDistance = 5f;
-        [SerializeField] float suspicionTime = 5f;
+        [SerializeField] float suspicionTime = 3f;
+        [SerializeField] float aggroCooldownTime = 3f;
         [SerializeField] PatrolPath patrolPath = null;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointDelayTime = 5f;
         [SerializeField] float waypointDelayVariance = 1f;
         [SerializeField] int currentWaypointIndex = 0;       
         [SerializeField] [Range (0,1)] float patrolSpeedFraction = 0.2f;
-        //[SerializeField] [Range (0,1)] float normalSpeedFraction = 1f;
+        [SerializeField] float shoutDistance = 5f;
 
         GameObject player;
         Fighter fighter;
@@ -27,9 +28,7 @@ namespace RPG.Control
         LazyValue<Vector3> guardPosition;
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeAtWaypoint = Mathf.Infinity;
-
-        bool isTriggered = false;
-        Vector3 currentTriggerPosition;
+        float timeSinceAggravated = Mathf.Infinity;
 
         void Awake ()
         {
@@ -54,13 +53,9 @@ namespace RPG.Control
         {
             if (health.IsDead ()) { return; }
 
-            if (InAttackRangeOfPlayer () && fighter.CanAttack (player))
+            if (IsAggravated () && fighter.CanAttack (player))
             {                
                 AttackBehaviour ();
-            }
-            else if (isTriggered)
-            {
-                TriggerBehaviour ();
             }
             else if (timeSinceLastSawPlayer <= suspicionTime)
             {
@@ -73,22 +68,16 @@ namespace RPG.Control
             UpdateTimers ();
         }
 
-        private void TriggerBehaviour ()
+        public void Aggravate ()
         {
-            if (Vector3.Distance(transform.position, currentTriggerPosition) < waypointTolerance)
-            {
-                isTriggered = false;
-            }
-            else
-            {
-                mover.StartMoveAction (currentTriggerPosition, 1f);
-            }
+            timeSinceAggravated = 0;
         }
 
         private void UpdateTimers ()
         {
             timeSinceLastSawPlayer += Time.deltaTime;
             timeAtWaypoint += Time.deltaTime;
+            timeSinceAggravated += Time.deltaTime;
         }
 
         private void PatrolBehaviour ()
@@ -134,24 +123,30 @@ namespace RPG.Control
         {
             timeSinceLastSawPlayer = 0;
             fighter.Attack (player);
+            AggravateNearbyEnemies ();
         }
 
-        bool InAttackRangeOfPlayer ()
+        void AggravateNearbyEnemies ()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll (transform.position, shoutDistance, Vector3.up, 0f);
+            foreach (RaycastHit hit in hits)
+            {
+                AIController ai = hit.collider.GetComponent<AIController> ();
+                if (ai == null) { continue; }
+                ai.Aggravate ();
+            }
+        }
+
+        bool IsAggravated ()
         {
             float distanceToPlayer = Vector3.Distance (transform.position, player.transform.position);
-            return distanceToPlayer <= chaseDistance;
+            return distanceToPlayer <= chaseDistance || timeSinceAggravated < aggroCooldownTime;
         }
 
         void OnDrawGizmosSelected ()
         {
             Gizmos.color = Color.white;
             Gizmos.DrawWireSphere (transform.position, chaseDistance);
-        }
-
-        public void SetTriggered ()
-        {
-            isTriggered = true;
-            currentTriggerPosition = player.transform.position;
         }
     } 
 }

@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 9025588973842234139, guid: 116880c176e011b45a60c340a894e59d,
         type: 3}
       propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetTriggered
+      value: Aggravate
       objectReference: {fileID: 0}
     - target: {fileID: 9025588973842234139, guid: 116880c176e011b45a60c340a894e59d,
         type: 3}
